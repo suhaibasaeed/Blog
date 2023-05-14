@@ -65,7 +65,7 @@ def get_interface_output(task):
 
 
 # Group tests together under a class
-class TestRouting:
+class TestIOS:
     # Pytestnr is a fixture defined in conftest.py
     @pytest.fixture(scope="class", autouse=True)
     def setup(self, pytestnr):
@@ -75,7 +75,7 @@ class TestRouting:
         ios_devices = pytestnr.filter(F(groups__contains="ios"))
         
         # Run get_ospf_output and get_bgp_output tasks
-        tasks = [get_ospf_output, get_bgp_output]
+        tasks = [get_ospf_output, get_bgp_output, get_interface_output, get_version_output]
         for atask in tasks:
             ios_devices.run(task=atask)
 
@@ -132,21 +132,6 @@ class TestRouting:
             expected_neighbours == actual_neighbours
         ), f"Expected {expected_neighbours} BGP neighbours on {device_name} but got {actual_neighbours} instead"
 
-
-# Group tests together under a class
-class TestInterfaces:
-    # Pytestnr is a fixture defined in conftest.py
-    @pytest.fixture(scope="class", autouse=True)
-    def setup(self, pytestnr):
-        
-        """Fixture to run before tests to get command output from devices"""
-        # Filter on ios devices
-        ios_devices = pytestnr.filter(F(groups__contains="ios"))
-        
-        # Run get_interface_output task
-        tasks = [get_interface_output]
-        for atask in tasks:
-            ios_devices.run(task=atask)
     
     @pytest.mark.parametrize("device_name", get_ios_device_names())
     def test_interface_status(self, pytestnr, device_name):
@@ -170,3 +155,22 @@ class TestInterfaces:
         assert (
             num_down_interfaces == 0
         ), f"{device_name} has {num_down_interfaces} interfaces not in the up state"
+    
+    @pytest.mark.parametrize("device_name", get_ios_device_names())
+    def test_version(self, pytestnr, device_name):
+            
+            """Test to check for correct software version"""
+    
+            # Get nornir host object for device
+            nr_host = pytestnr.inventory.hosts[device_name]
+            # Get version data from nornir host object
+            version = nr_host["version_output"]
+    
+            # expected_version = nr_host["expected_version"]
+            expected_version = "15.6()T"
+            actual_version = version[0]['version']
+    
+            # Assert expected and actual versions are the same
+            assert (
+                expected_version == actual_version
+            ), f"Expected version {expected_version} on {device_name} but got {actual_version} instead"
