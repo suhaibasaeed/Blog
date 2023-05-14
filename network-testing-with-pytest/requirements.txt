@@ -1,3 +1,4 @@
 nornir
 pytest
 nornir-netmiko
+nornir-utils

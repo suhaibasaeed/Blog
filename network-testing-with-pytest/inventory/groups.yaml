@@ -1,0 +1,18 @@
+---
+nxos:
+  platform: cisco_nxos
+  port: 22
+  data:
+    sw_ver: 9.3(7a)
+
+ios:
+  platform: cisco_ios
+  port: 22
+  data:
+    sw_ver: 15.6(2)T
+
+eos:
+  platform: arista_eos
+  port: 22
+  data:
+    sw_ver: 4.23.8M
