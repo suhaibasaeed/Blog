@@ -1,7 +1,6 @@
 import pytest
 from nornir import InitNornir
 
-
 # Use fixture for entire session - all tests will use this automatically
 @pytest.fixture(scope="session", autouse=True)
 def pytestnr():
