@@ -3,22 +3,25 @@ nxos:
   platform: cisco_nxos
   port: 22
   data:
-    sw_ver: 9.3(7a)
-    expected_ospf_neighbors: 6
+    expected_version: 9.3(7a)
+    expected_ospf_neighbours: 6
+    expected_bgp_neighbours: 6
 
 ios:
   platform: cisco_ios
   port: 22
   data:
-    sw_ver: 15.6(2)T
-    expected_ospf_neighbors: 2
+    expected_version: 15.6(2)T
+    expected_ospf_neighbours: 2
+    expected_bgp_neighbours: 2
 
 eos:
   platform: arista_eos
   port: 22
   data:
-    sw_ver: 4.23.8M
-    expected_ospf_neighbors: 2
+    expected_version: 4.23.8M
+    expected_ospf_neighbours: 2
+    expected_bgp_neighbours: 2
 
 spine:
   groups:
