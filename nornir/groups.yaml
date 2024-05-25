@@ -1,0 +1,22 @@
+---
+cisco:
+  port: 22
+  platform: ios
+  # Pass in parameters into plugins e.g. nornir-netmiko
+  connection_options:
+    netmiko:
+      platform: cisco_ios
+      
+router:
+  groups:
+    - cisco
+
+london:
+  groups:
+    - cisco
+
+manchester:
+  groups:
+    - cisco
+  data:
+    ntp_server: 2.2.2.2

@@ -1,0 +1,18 @@
+---
+# Inventory related settings
+inventory:
+  plugin: SimpleInventory
+  # Specify path to our inventory yaml files
+  options:
+    host_file: "./hosts.yaml"
+    group_file: "./groups.yaml"
+    defaults_file: "./defaults.yaml"
+# Concurrency related settings
+runner:
+  plugin: threaded
+  options:
+    # Use 5 threads - default is 20
+    num_workers: 5
+logging:
+  log_file: nornir.log
+  enabled: yes

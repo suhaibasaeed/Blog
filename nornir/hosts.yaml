@@ -1,0 +1,22 @@
+---
+cisco1:
+  # Hostname/DNS name of device
+  hostname: 10.1.1.2
+  # Groups the host is a part of
+  groups:
+  - cisco
+  - router
+  - london
+  # Host variables
+  data:
+    ntp_server: 1.1.1.1
+cisco2:
+  hostname: 10.1.1.3
+  groups:
+  - cisco
+  - router
+  - manchester
+cisco3:
+  hostname: 10.1.1.4
+  groups:
+    - cisco
