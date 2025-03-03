@@ -1,5 +1,5 @@
 # Slashing AWS Network Costs Blog
-1. To get this Terraform code to work you will need to add the following block, to the `main.tf` file or another .tf file in the same directory. 
+1. To get this Terraform code to work you will need to add the following block, to the `main.tf` file or another .tf file in the same directory such as `terraform.tf`. 
 ```
 terraform {
 
